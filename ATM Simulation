@@ -1,0 +1,66 @@
+import java.util.Scanner;
+public class ATM{
+    private double balance;
+    public ATM(double initialBalance){
+        this.balance = initialBalance;
+    }
+    public void deposit(double amount){
+        if (amount > 0){
+            balance += amount;
+            System.out.println("Successfully deposited " + amount);
+        } else {
+            System.out.println("Invalid deposit amount");
+        }
+    }
+
+    public void withdraw(double amount){
+        if (amount > 0 && amount <= balance){
+            balance -= amount;
+            System.out.println("Successfully withdrew" + amount);
+        } else {
+            System.out.println("Insufficient fund or invalid amount");
+        }
+
+    }
+    public void checkBalance(){
+        System.out.println("Current Balance: $ " + balance);
+    }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ATM atm = new ATM(0.00);
+        int choice;
+        do {
+            System.out.println("_____ATM MENU_____");
+            System.out.println("1. Check Balance");
+            System.out.println("2. Deposit ");
+            System.out.println("3. Withdraw");
+            System.out.println(". Exit");
+            System.out.print("enter your choice: ");
+            choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    atm.checkBalance();
+                    break;
+                case 2:
+                    System.out.print("Enter deposit amount $: ");
+                    double userInput = scanner.nextDouble();
+                    atm.deposit(userInput);
+                    break;
+                case 3:
+                    System.out.print("Enter amount to withdraw $: ");
+                    double userWithdraw = scanner.nextDouble();
+                    atm.withdraw(userWithdraw);
+                    break;
+                case 4:
+                    System.out.println("Thanks for using , goof bye");
+                    break;
+                default:
+                    System.out.println("Invalid choice . Please try again.");
+
+            }}
+            while (choice != 4) ;
+            scanner.close();
+        }
+    }
+
+
